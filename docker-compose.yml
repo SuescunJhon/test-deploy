@@ -2,10 +2,9 @@ services:
   backend:
     build: 
       context: ./backend
-    volumes:
-      - "static:/static"
-    env_file:
-      - .env
+    environment:
+      - SECRET_KEY: ${SECRET_KEY}
+      - DEBUG: ${DEBUG}
     ports:
       - "8000:8000"
       
@@ -14,19 +13,5 @@ services:
       context: ./frontend
     volumes:
       - "frontend:/app/build"
-
-  nginx:
-    build: 
-      context: ./nginx
-    volumes:
-      - "static:/static"
-      - "frontend:/var/www/frontend"
     ports:
-      - "80:80"
-    depends_on:
-      - backend
-      - frontend
-
-volumes:
-  static:
-  frontend:    
+      - "3000:80"
