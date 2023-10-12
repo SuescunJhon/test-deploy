@@ -3,15 +3,13 @@ services:
     build: 
       context: ./backend
     environment:
-      - SECRET_KEY: ${SECRET_KEY}
-      - DEBUG: ${DEBUG}
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
     ports:
       - "8000:8000"
       
   frontend:
     build: 
       context: ./frontend
-    volumes:
-      - "frontend:/app/build"
     ports:
       - "3000:80"
